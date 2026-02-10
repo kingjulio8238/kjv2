@@ -10,14 +10,12 @@ export default function Nav() {
     useEffect(() => {
         if (!isMainPage) {
             setIsScrolled(true);
-            setIsLightMode(false);
-            return;
+        } else {
+            setIsScrolled(false);
         }
-
-        setIsScrolled(false);
         setIsLightMode(false);
 
-        const heroSection = document.getElementById('hero');
+        const heroSection = isMainPage ? document.getElementById('hero') : null;
         const footerSection = document.getElementById('footer');
 
         const heroObserver = new IntersectionObserver(
