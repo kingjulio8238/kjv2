@@ -761,13 +761,11 @@ a {
 .bio-terminal-scanlines {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 1px,
-    rgba(0, 0, 0, 0.04) 1px,
-    rgba(0, 0, 0, 0.04) 2px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 0, 0, 0.04) 1px,
+      rgba(0, 0, 0, 0.04) 2px);
   pointer-events: none;
   z-index: 10;
 }
@@ -854,8 +852,15 @@ a {
 }
 
 @keyframes bio-cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Skip hint */
@@ -873,8 +878,15 @@ a {
 }
 
 @keyframes bio-skip-pulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* ========== FEED PAGE ========== */
@@ -1136,5 +1148,73 @@ a {
 
   .statement-headline {
     font-size: clamp(38px, 8vw, 100px);
+  }
+}
+
+/* ========== MOBILE REFINEMENTS (iPhone 16 Series Optimization) ========== */
+@media (max-width: 768px) {
+
+  /* Nav Optimization */
+  .nav {
+    padding: 16px 20px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    padding: 12px 6px;
+    /* Larger touch target */
+  }
+
+  /* Hero Adjustments */
+  .hero-content {
+    padding-bottom: 120px;
+  }
+
+  /* Project Card Optimization */
+  .project-card {
+    min-height: auto;
+    aspect-ratio: 4/5;
+  }
+
+  /* Feed Optimization */
+  .feed-card {
+    aspect-ratio: 1/1;
+    min-height: auto;
+  }
+
+  .feed-card-large {
+    aspect-ratio: 1/1;
+    min-height: auto;
+  }
+
+  /* Contact Form Optimization - Prevent iOS Zoom */
+  .contact-input {
+    font-size: max(16px, clamp(22px, 6vw, 36px));
+  }
+
+  .contact-textarea {
+    font-size: 16px;
+    /* Prevent zoom */
+  }
+
+  /* Footer Tweaks */
+  .footer {
+    padding: 60px 24px 40px;
+  }
+
+  .footer-heading {
+    font-size: clamp(42px, 12vw, 80px);
+    /* Ensure it fits 393px */
+  }
+
+  .footer-links a {
+    padding: 10px 0;
+    /* Touch targets */
+    font-size: 24px;
+    display: inline-block;
   }
 }
