@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BioCta() {
     const buttonRef = useRef(null);
@@ -24,9 +25,9 @@ export default function BioCta() {
 
     return (
         <section className="bio-cta" id="bio-cta">
-            <a href="#" className="bio-cta-button reveal" ref={buttonRef}>
+            <Link to="/bio" className="bio-cta-button reveal" ref={buttonRef}>
                 READ MY BIO
-            </a>
+            </Link>
         </section>
     );
 }

@@ -3,7 +3,7 @@ import memaryImage from '../assets/memary.png';
 
 export default function Projects() {
     const memaryCardRef = useRef(null);
-    const coverCardRef = useRef(null);
+    const hyperionCardRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -18,11 +18,11 @@ export default function Projects() {
         );
 
         if (memaryCardRef.current) observer.observe(memaryCardRef.current);
-        if (coverCardRef.current) observer.observe(coverCardRef.current);
+        if (hyperionCardRef.current) observer.observe(hyperionCardRef.current);
 
         return () => {
             if (memaryCardRef.current) observer.unobserve(memaryCardRef.current);
-            if (coverCardRef.current) observer.unobserve(coverCardRef.current);
+            if (hyperionCardRef.current) observer.unobserve(hyperionCardRef.current);
         };
     }, []);
 
@@ -49,24 +49,21 @@ export default function Projects() {
                 <span className="project-card-label">MEMARY</span>
             </a>
 
-            {/* COVER card */}
-            <div className="project-card project-card-cover reveal reveal-delay-1" ref={coverCardRef}>
-                <img
-                    className="project-card-image"
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80&auto=format"
-                    alt="Cover device"
-                />
+            {/* HYPERION card */}
+            <a
+                href="https://kingjulio8238.github.io/hyperion_report/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card project-card-cover reveal reveal-delay-1"
+                ref={hyperionCardRef}
+            >
                 <div className="project-card-content">
-                    <svg className="project-card-icon" viewBox="0 0 36 36" fill="#444">
-                        <rect x="2" y="2" width="32" height="32" rx="6" fill="none" stroke="#555" strokeWidth="2" />
-                        <rect x="10" y="10" width="16" height="16" rx="3" fill="none" stroke="#555" strokeWidth="2" />
-                    </svg>
                     <p className="project-card-text">
-                        Invisible security force field<br />protecting schools from guns
+                        Continual Learning Infrastructure<br />for AI Robotics
                     </p>
                 </div>
-                <span className="project-card-label">COVER</span>
-            </div>
+                <span className="project-card-label">HYPERION</span>
+            </a>
         </section>
     );
 }

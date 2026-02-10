@@ -28,10 +28,10 @@ export default function Statement() {
     return (
         <section className="statement" id="statement">
             <h2 className="statement-headline reveal" ref={headlineRef}>
-                I LIKE TO BUILD<br />IMPOSSIBLE THINGS.
+                TURNING SCI-FI<br />INTO REALITY.
             </h2>
             <p className="statement-subtitle reveal reveal-delay-1" ref={subtitleRef}>
-                With extreme practicality,<br />I make crazy ideas real.
+                With deep curiosity,<br />I build the improbable.
             </p>
         </section>
     );

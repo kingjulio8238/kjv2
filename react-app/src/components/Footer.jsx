@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Footer({ onShowContact, onNavigateToSection }) {
+export default function Footer() {
     const headingRef = useRef(null);
     const linksRef = useRef(null);
 
@@ -32,25 +33,14 @@ export default function Footer({ onShowContact, onNavigateToSection }) {
                     KEEP<br />UP
                 </h2>
                 <div className="footer-links reveal reveal-delay-1" ref={linksRef}>
-                    <a href="#bio-cta">BIO</a>
-                    <a href="#feed">FEED</a>
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onShowContact();
-                        }}
-                    >
-                        CONTACT
-                    </a>
+                    <Link to="/bio">BIO</Link>
+                    <Link to="/feed">FEED</Link>
+                    <Link to="/contact">CONTACT</Link>
                     <a href="https://x.com/JulianSaks" target="_blank" rel="noopener noreferrer">
                         X
                     </a>
                     <a href="https://www.linkedin.com/in/juliansaks/" target="_blank" rel="noopener noreferrer">
                         LINKEDIN
-                    </a>
-                    <a href="https://www.instagram.com/juliansaks" target="_blank" rel="noopener noreferrer">
-                        INSTAGRAM
                     </a>
                 </div>
             </div>

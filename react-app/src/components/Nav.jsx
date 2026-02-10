@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
-export default function Nav({ isContactPage, onShowContact, onShowMain, onNavigateToSection }) {
-    const [isScrolled, setIsScrolled] = useState(false);
+export default function Nav() {
+    const location = useLocation();
+    const isMainPage = location.pathname === '/';
+    const [isScrolled, setIsScrolled] = useState(!isMainPage);
     const [isLightMode, setIsLightMode] = useState(false);
 
     useEffect(() => {
-        if (isContactPage) return;
+        if (!isMainPage) {
+            setIsScrolled(true);
+            setIsLightMode(false);
+            return;
+        }
+
+        setIsScrolled(false);
+        setIsLightMode(false);
 
         const heroSection = document.getElementById('hero');
         const footerSection = document.getElementById('footer');
@@ -35,50 +45,32 @@ export default function Nav({ isContactPage, onShowContact, onShowMain, onNaviga
             if (heroSection) heroObserver.unobserve(heroSection);
             if (footerSection) footerObserver.unobserve(footerSection);
         };
-    }, [isContactPage]);
-
-    const handleNavClick = (e, target) => {
-        e.preventDefault();
-        if (isContactPage) {
-            onShowMain();
-            setTimeout(() => {
-                const el = document.querySelector(target);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-    };
+    }, [isMainPage]);
 
     const navClasses = [
         'nav',
-        isScrolled || isContactPage ? 'scrolled' : '',
-        isLightMode && !isContactPage ? 'light-mode' : '',
+        isScrolled ? 'scrolled' : '',
+        isLightMode ? 'light-mode' : '',
     ]
         .filter(Boolean)
         .join(' ');
 
     return (
         <nav className={navClasses} id="nav">
-            <div className="nav-logo" onClick={isContactPage ? onShowMain : undefined}>
+            <Link to="/" className="nav-logo">
                 <span className="full">JULIAN SAKS</span>
                 <span className="abbr">JDS</span>
-            </div>
+            </Link>
             <div className="nav-links">
-                <a href="#bio-cta" onClick={(e) => handleNavClick(e, '#bio-cta')}>
+                <Link to="/bio" className={location.pathname === '/bio' ? 'nav-active' : ''}>
                     BIO
-                </a>
-                <a href="#feed" onClick={(e) => handleNavClick(e, '#feed')}>
+                </Link>
+                <Link to="/feed" className={location.pathname.startsWith('/feed') ? 'nav-active' : ''}>
                     FEED
-                </a>
-                <a
-                    href="#"
-                    className={isContactPage ? 'nav-active' : ''}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        onShowContact();
-                    }}
-                >
+                </Link>
+                <Link to="/contact" className={location.pathname === '/contact' ? 'nav-active' : ''}>
                     CONTACT
-                </a>
+                </Link>
             </div>
         </nav>
     );

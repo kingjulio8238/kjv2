@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { feedArticles } from '../data/feedData';
 
 const ArrowIcon = () => (
     <svg viewBox="0 0 24 24">
@@ -38,48 +40,32 @@ export default function Feed() {
         };
     }, []);
 
+    const cardRefs = [card1Ref, card2Ref, card3Ref];
+
     return (
         <section className="feed" id="feed">
             <div className="feed-header">
                 <h2 className="feed-title reveal" ref={titleRef}>
                     THE FEED
                 </h2>
-                <a href="#" className="feed-view-all reveal reveal-delay-1" ref={viewAllRef}>
+                <Link to="/feed" className="feed-view-all reveal reveal-delay-1" ref={viewAllRef}>
                     VIEW ALL
-                </a>
+                </Link>
             </div>
             <div className="feed-grid">
-                <div className="feed-card feed-card-large reveal" ref={card1Ref}>
-                    <img
-                        src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80&auto=format"
-                        alt="Robotics manufacturing"
-                    />
-                    <span className="feed-card-tag">ARTICLES</span>
-                    <div className="feed-card-arrow">
-                        <ArrowIcon />
-                    </div>
-                </div>
-                <div className="feed-card reveal reveal-delay-1" ref={card2Ref}>
-                    <img
-                        src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80&auto=format"
-                        alt="Humanoid robots"
-                    />
-                    <span className="feed-card-tag">ARTICLES</span>
-                    <div className="feed-card-arrow">
-                        <ArrowIcon />
-                    </div>
-                    <div className="feed-card-title">Natural Humanoid Walk Using Reinforcement Learning</div>
-                </div>
-                <div className="feed-card reveal reveal-delay-2" ref={card3Ref}>
-                    <img
-                        src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=800&q=80&auto=format"
-                        alt="Robot assembly"
-                    />
-                    <span className="feed-card-tag">ARTICLES</span>
-                    <div className="feed-card-arrow">
-                        <ArrowIcon />
-                    </div>
-                </div>
+                {feedArticles.map((article, i) => (
+                    <Link
+                        to={`/feed/${article.slug}`}
+                        className={`feed-card ${i === 0 ? 'feed-card-large' : ''} reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}
+                        key={article.slug}
+                        ref={cardRefs[i]}
+                    >
+                        <img src={article.image} alt={article.imageAlt} />
+                        <span className="feed-card-tag">{article.tag}</span>
+                        <div className="feed-card-arrow"><ArrowIcon /></div>
+                        {article.title && <div className="feed-card-title">{article.title}</div>}
+                    </Link>
+                ))}
             </div>
         </section>
     );

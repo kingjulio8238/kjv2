@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Statement from './components/Statement';
@@ -7,51 +7,35 @@ import BioCta from './components/BioCta';
 import Feed from './components/Feed';
 import Footer from './components/Footer';
 import ContactPage from './components/ContactPage';
+import BioPage from './components/BioPage';
+import FeedPage from './components/FeedPage';
+import FeedArticlePage from './components/FeedArticlePage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const [isContactPage, setIsContactPage] = useState(false);
-
-  const showContact = () => {
-    setIsContactPage(true);
-    window.scrollTo(0, 0);
-  };
-
-  const showMain = () => {
-    setIsContactPage(false);
-    window.scrollTo(0, 0);
-  };
-
-  const navigateToSection = (sectionId) => {
-    showMain();
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
   return (
     <>
-      <Nav
-        isContactPage={isContactPage}
-        onShowContact={showContact}
-        onShowMain={showMain}
-        onNavigateToSection={navigateToSection}
-      />
-
-      <main
-        id="mainContent"
-        style={{ display: isContactPage ? 'none' : 'block' }}
-      >
-        <Hero />
-        <Statement />
-        <Projects />
-        <BioCta />
-        <Feed />
-      </main>
-
-      <ContactPage isActive={isContactPage} />
-
-      <Footer onShowContact={showContact} onNavigateToSection={navigateToSection} />
+      <ScrollToTop />
+      <Nav />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main id="mainContent">
+              <Hero />
+              <Statement />
+              <Projects />
+              <BioCta />
+              <Feed />
+              <Footer />
+            </main>
+          }
+        />
+        <Route path="/bio" element={<><BioPage /><Footer /></>} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/feed" element={<><FeedPage /><Footer /></>} />
+        <Route path="/feed/:slug" element={<><FeedArticlePage /><Footer /></>} />
+      </Routes>
     </>
   );
 }
