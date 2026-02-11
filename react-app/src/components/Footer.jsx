@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Footer() {
+    const location = useLocation();
     const headingRef = useRef(null);
     const linksRef = useRef(null);
 
@@ -45,7 +46,17 @@ export default function Footer() {
                 </div>
             </div>
             <div className="footer-bottom">
-                <img src="/saks_fam_emblem.png" alt="Saks Family Emblem" className="footer-emblem" />
+                <Link
+                    to="/"
+                    onClick={(e) => {
+                        if (location.pathname === '/') {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }}
+                >
+                    <img src="/saks_fam_emblem.png" alt="Saks Family Emblem" className="footer-emblem" />
+                </Link>
             </div>
         </footer>
     );

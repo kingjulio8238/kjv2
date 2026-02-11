@@ -70,7 +70,7 @@ a {
 .nav-logo {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(20px, 1.5vw, 24px);
+  font-size: clamp(24px, 1.4vw, 16px);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -113,6 +113,17 @@ a {
 
 .nav-links a:hover {
   opacity: 0.6;
+}
+
+.nav.footer-visible .nav-links {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav.footer-visible .nav-logo {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Nav active pill on contact page */
@@ -1108,6 +1119,10 @@ a {
     gap: clamp(32px, 5vw, 48px);
   }
 
+  .contact-page {
+    padding-bottom: 80px;
+  }
+
   .contact-heading {
     font-size: clamp(48px, 14vw, 90px);
   }
@@ -1164,8 +1179,27 @@ a {
     padding: 16px 20px;
   }
 
+
+
+  .nav.nav-static {
+    position: absolute;
+  }
+
   .nav-links {
     gap: 16px;
+  }
+
+  /* Make logo same size/font as links */
+  .nav-logo {
+    font-size: clamp(12px, 0.9vw, 15px);
+    letter-spacing: 0.14em;
+  }
+
+  .nav-links a.nav-active {
+    border: none;
+    border-radius: 0;
+    padding: 12px 6px;
+    margin: 0;
   }
 
   .nav-links a {

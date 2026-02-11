@@ -6,6 +6,7 @@ export default function Nav() {
     const isMainPage = location.pathname === '/';
     const [isScrolled, setIsScrolled] = useState(!isMainPage);
     const [isLightMode, setIsLightMode] = useState(false);
+    const [isFooterVisible, setIsFooterVisible] = useState(false);
 
     useEffect(() => {
         if (!isMainPage) {
@@ -14,6 +15,7 @@ export default function Nav() {
             setIsScrolled(false);
         }
         setIsLightMode(false);
+        setIsFooterVisible(false);
 
         const heroSection = isMainPage ? document.getElementById('hero') : null;
         const footerSection = document.getElementById('footer');
@@ -31,6 +33,7 @@ export default function Nav() {
             (entries) => {
                 entries.forEach((entry) => {
                     setIsLightMode(entry.isIntersecting);
+                    setIsFooterVisible(entry.isIntersecting);
                 });
             },
             { threshold: 0.15 }
@@ -49,6 +52,8 @@ export default function Nav() {
         'nav',
         isScrolled ? 'scrolled' : '',
         isLightMode ? 'light-mode' : '',
+        isFooterVisible ? 'footer-visible' : '',
+        location.pathname.startsWith('/feed') ? 'nav-static' : '',
     ]
         .filter(Boolean)
         .join(' ');
