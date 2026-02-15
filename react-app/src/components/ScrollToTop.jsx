@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import posthog from 'posthog-js';
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
@@ -9,6 +10,7 @@ export default function ScrollToTop() {
       left: 0,
       behavior: 'instant'
     });
+    posthog.capture('$pageview');
   }, [pathname]);
   return null;
 }
