@@ -1,4 +1,16 @@
-[Texas Blockchain](https://www.texasblockchain.org/) is a student organization at UT Austin focused on exploring and building blockchain-related products and services. Over nearly 3 years, I grew from a freshman member to President—scaling the org into the first state-wide blockchain university organization in the US.
+[Texas Blockchain](https://www.texasblockchain.org/) is a student organization at UT Austin focused on exploring and building blockchain-related products and services. Over nearly 3 years, I went from being a freshman member to President in my junior year scaling the org into the top five university blockchain clubs in the nation. 
+
+## By the Numbers
+
+The scale of what we built—especially for an undergraduate organization—was something I'm incredibly proud of:
+
+- **$100,000+** raised in funding
+- **$55,000** in hackathon grants distributed
+- **$12,500** in startup grants
+- **30+ partners** including Solana, Ethereum Foundation, Binance, Avalanche, and UT Austin faculty
+- **20 ETH** deployed across 13 investments
+- **2 hackathons** hosted, **4 hackathons** attended (won $3,600 in bounties)
+- Expanded to become a **state-wide organization**
 
 ## The Journey
 
@@ -27,18 +39,6 @@
 - Won the 2021 Finance Investment Theses Pitch Day
 - Researched governance contracts for proposals, voting, and delegation
 
-## By the Numbers
-
-The scale of what we built—especially for an undergraduate organization—was something I'm incredibly proud of:
-
-- **$100,000+** raised in funding
-- **$55,000** in hackathon grants distributed
-- **$12,500** in startup grants
-- **30+ partners** including Solana, Ethereum Foundation, Binance, Avalanche, and UT Austin faculty
-- **20 ETH** deployed across 13 investments
-- **2 hackathons** hosted, **4 hackathons** attended (won $3,600 in bounties)
-- Expanded to become a **state-wide organization**
-
 ## What I Learned
 
-Leading Texas Blockchain taught me how to manage different teams, build partnerships with industry leaders, and lock in funding at scale. Taking an organization from a campus club to a multi-university operation with six-figure budgets and partnerships with household names in crypto—that's an experience I'll always value.
+Leading Texas Blockchain taught me how to manage different teams, build partnerships with industry leaders, and secure funding at scale. Taking an organization from a 10 person campus club to a multi-university operation with six-figure budgets and partnerships with some of the biggest names in crypto is an experience that I'll always value.
