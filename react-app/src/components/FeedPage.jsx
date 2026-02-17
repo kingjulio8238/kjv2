@@ -2,13 +2,6 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { feedArticles } from '../data/feedData';
 
-const ArrowIcon = () => (
-  <svg viewBox="0 0 24 24">
-    <line x1="7" y1="17" x2="17" y2="7" />
-    <polyline points="7,7 17,7 17,17" />
-  </svg>
-);
-
 export default function FeedPage() {
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
@@ -49,10 +42,16 @@ export default function FeedPage() {
             key={article.slug}
             ref={(el) => (cardRefs.current[i] = el)}
           >
-            <img src={article.image} alt={article.imageAlt} />
-            <span className="feed-card-tag">{article.tag}</span>
-            <div className="feed-card-arrow"><ArrowIcon /></div>
-            <div className="feed-card-title">{article.title}</div>
+            <div className="feed-card-image">
+              <img src={article.image} alt={article.imageAlt} />
+            </div>
+            <div className="feed-card-content">
+              <div className="feed-card-title">{article.title}</div>
+              <div className="feed-card-meta">
+                <span className="feed-card-tag">{article.tag}</span>
+                <span className="feed-card-date">{article.date}</span>
+              </div>
+            </div>
           </Link>
         ))}
       </div>

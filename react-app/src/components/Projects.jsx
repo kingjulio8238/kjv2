@@ -28,12 +28,28 @@ export default function Projects() {
 
     return (
         <section className="projects" id="projects">
+            {/* HYPERION card */}
+            <a
+                href="https://kingjulio8238.github.io/hyperion_report/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card project-card-cover reveal"
+                ref={hyperionCardRef}
+            >
+                <img
+                    className="project-card-image"
+                    src="/feed-hyperion.png"
+                    alt="Hyperion"
+                />
+                <span className="project-card-label">Continual Learning Infrastructure for AI Robotics</span>
+            </a>
+
             {/* MEMARY card */}
             <a
                 href="https://github.com/kingjulio8238/Memary"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-card project-card-figure reveal"
+                className="project-card project-card-figure reveal reveal-delay-1"
                 ref={memaryCardRef}
             >
                 <img
@@ -41,28 +57,7 @@ export default function Projects() {
                     src={memaryImage}
                     alt="Memary - Memory for Agents"
                 />
-                <div className="project-card-content">
-                    <p className="project-card-text">
-                        Memory for Agents
-                    </p>
-                </div>
-                <span className="project-card-label">MEMARY</span>
-            </a>
-
-            {/* HYPERION card */}
-            <a
-                href="https://kingjulio8238.github.io/hyperion_report/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-card project-card-cover reveal reveal-delay-1"
-                ref={hyperionCardRef}
-            >
-                <div className="project-card-content">
-                    <p className="project-card-text">
-                        Continual Learning Infrastructure<br />for AI Robotics
-                    </p>
-                </div>
-                <span className="project-card-label">HYPERION</span>
+                <span className="project-card-label">Memory for Agents</span>
             </a>
         </section>
     );

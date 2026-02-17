@@ -1,13 +1,26 @@
 import memaryContent from '../content/memary.md?raw';
 import texasBlockchainContent from '../content/texas-blockchain.md?raw';
 import onPolicyContent from '../content/on-policy.md?raw';
+import whyHyperionNowContent from '../content/why-hyperion-now.md?raw';
+import memaryImage from '../assets/memary.png';
 
 export const feedArticles = [
   {
+    slug: 'why-hyperion-now',
+    title: 'Why Build Hyperion Now?',
+    description: 'The era of earned intelligence and why the time is right for Hyperion.',
+    tag: 'Thought',
+    categories: ['Robotics', 'Infrastructure'],
+    image: '/feed-hyperion.png',
+    imageAlt: 'Hyperion',
+    date: 'February 2026',
+    content: whyHyperionNowContent,
+  },
+  {
     slug: 'on-policy',
-    title: 'Why the Future of Robotics is On-Policy',
+    title: 'The On-Policy Robotics Future',
     description: 'Why frontier labs will shift from buying data to earning data.',
-    tag: 'THOUGHT',
+    tag: 'Thought',
     categories: ['Robotics'],
     image: '/feed-on-policy.png',
     imageAlt: 'Robotics',
@@ -18,22 +31,22 @@ export const feedArticles = [
     slug: 'memary',
     title: 'Memary',
     description: 'The open source memory layer for autonomous agents.',
-    tag: 'PROJECT',
+    tag: 'Project',
     categories: ['Agents', 'Memory'],
-    image: '/feed-memary.png',
+    image: memaryImage,
     imageAlt: 'Memary',
-    date: 'January 2026',
+    date: '2023 - 2024',
     content: memaryContent,
   },
   {
     slug: 'texas-blockchain',
     title: 'Texas Blockchain',
     description: 'Building a state-wide blockchain organization from the ground up.',
-    tag: 'PROJECT',
+    tag: 'Project',
     categories: ['Blockchain', 'Leadership'],
     image: '/feed-texas-blockchain.png',
     imageAlt: 'Texas Blockchain',
-    date: 'January 2026',
+    date: '2021 - 2024',
     content: texasBlockchainContent,
   },
 ];

@@ -285,11 +285,15 @@ a {
 }
 
 .project-card-figure {
-  background: #222;
+  background: #fff;
+}
+
+.project-card-figure .project-card-label {
+  color: #000;
 }
 
 .project-card-cover {
-  background: var(--sage);
+  background: #fff;
 }
 
 .project-card-image {
@@ -306,7 +310,8 @@ a {
 
 .project-card-cover .project-card-image {
   object-fit: contain;
-  padding: 8%;
+  padding: 3%;
+  transform: scale(1.15);
 }
 
 .project-card-content {
@@ -427,99 +432,85 @@ a {
 
 .feed-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 12px;
-  min-height: clamp(500px, 75vh, 900px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4vw, 56px) clamp(16px, 1.5vw, 24px);
+  max-width: 1728px;
+  margin: 0 auto;
 }
 
 .feed-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.feed-card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
   background: #222;
 }
 
-.feed-card img {
-  position: absolute;
-  inset: -30%;
-  width: 160%;
-  height: 160%;
+.feed-card-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
   display: block;
+  transition: transform 0.5s ease;
 }
 
-.feed-card:hover img {
-  transform: scale(1.03);
+.feed-card-image:has(img[alt="Hyperion"]) {
+  background: #fff;
 }
 
-.feed-card-large {
-  grid-row: 1 / 3;
+.feed-card-image img[alt="Hyperion"] {
+  object-fit: contain;
+  transform: scale(0.99);
 }
 
-.feed-card-tag {
-  position: absolute;
-  top: clamp(12px, 1.5vw, 20px);
-  left: clamp(12px, 1.5vw, 20px);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: clamp(9px, 0.7vw, 12px);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-white);
-  z-index: 2;
+.feed-card:hover .feed-card-image img {
+  transform: scale(1.025);
 }
 
-.feed-card-arrow {
-  position: absolute;
-  top: clamp(12px, 1.5vw, 20px);
-  right: clamp(12px, 1.5vw, 20px);
-  width: clamp(32px, 2.5vw, 40px);
-  height: clamp(32px, 2.5vw, 40px);
-  border-radius: 50%;
-  background: transparent;
+.feed-card:hover .feed-card-image img[alt="Hyperion"] {
+  transform: scale(1.015);
+}
+
+.feed-card-content {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  transition: transform 0.3s;
-}
-
-.feed-card:hover .feed-card-arrow {
-  transform: scale(1.08);
-}
-
-.feed-card-arrow svg {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.7);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: clamp(14px, 1.2vw, 20px);
 }
 
 .feed-card-title {
-  position: absolute;
-  bottom: clamp(16px, 2vw, 28px);
-  left: clamp(16px, 2vw, 28px);
-  right: clamp(16px, 2vw, 28px);
-  z-index: 2;
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: clamp(14px, 1.3vw, 22px);
-  line-height: 1.3;
+  font-weight: 400;
+  font-size: clamp(16px, 1.3vw, 22px);
+  line-height: 1.35;
   color: var(--text-white);
 }
 
-.feed-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
-  pointer-events: none;
+.feed-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feed-card-tag {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(12px, 0.85vw, 14px);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.feed-card-date {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(12px, 0.85vw, 14px);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* ========== FOOTER ========== */
@@ -924,12 +915,10 @@ a {
 
 .feed-page-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.feed-page-grid .feed-card {
-  min-height: clamp(300px, 40vh, 500px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4vw, 56px) clamp(16px, 1.5vw, 24px);
+  max-width: 1728px;
+  margin: 0 auto;
 }
 
 /* ========== FEED ARTICLE ========== */
@@ -1086,18 +1075,7 @@ a {
   }
 
   .feed-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    min-height: auto;
-  }
-
-  .feed-card {
-    min-height: 260px;
-  }
-
-  .feed-card-large {
-    grid-row: auto;
-    min-height: 340px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .footer-top {
@@ -1149,7 +1127,7 @@ a {
   }
 
   .feed-page-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .feed-article-heading {
@@ -1220,14 +1198,9 @@ a {
   }
 
   /* Feed Optimization */
-  .feed-card {
-    aspect-ratio: 1/1;
-    min-height: auto;
-  }
-
-  .feed-card-large {
-    aspect-ratio: 1/1;
-    min-height: auto;
+  .feed-grid,
+  .feed-page-grid {
+    grid-template-columns: 1fr;
   }
 
   /* Contact Form Optimization - Prevent iOS Zoom */
