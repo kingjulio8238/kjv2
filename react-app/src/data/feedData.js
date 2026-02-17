@@ -9,7 +9,7 @@ export const feedArticles = [
     slug: 'why-hyperion-now',
     title: 'Why Build Hyperion Now?',
     description: 'The era of earned intelligence and why the time is right for Hyperion.',
-    tag: 'Thought',
+    tag: 'Company',
     categories: ['Robotics', 'Infrastructure'],
     image: '/feed-hyperion.png',
     imageAlt: 'Hyperion',
