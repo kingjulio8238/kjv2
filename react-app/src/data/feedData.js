@@ -2,9 +2,21 @@ import memaryContent from '../content/memary.md?raw';
 import texasBlockchainContent from '../content/texas-blockchain.md?raw';
 import onPolicyContent from '../content/on-policy.md?raw';
 import whyHyperionNowContent from '../content/why-hyperion-now.md?raw';
+import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?raw';
 import memaryImage from '../assets/memary.png';
 
 export const feedArticles = [
+  {
+    slug: 'when-we-have-everything',
+    title: 'When We Have Everything, What Do We Do?',
+    description: 'Abundance is not a destination; it is a test of intent.',
+    tag: 'Thought',
+    categories: ['Philosophy', 'Future'],
+    image: '/feed-what-to-do.png',
+    imageAlt: 'When We Have Everything',
+    date: 'February 2026',
+    content: whenWeHaveEverythingContent,
+  },
   {
     slug: 'why-hyperion-now',
     title: 'Why Build Hyperion Now?',

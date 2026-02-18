@@ -28,7 +28,7 @@ export default function Statement() {
     return (
         <section className="statement" id="statement">
             <h2 className="statement-headline reveal" ref={headlineRef}>
-                TURNING SCI-FI<br />INTO REALITY.
+                TURNING SCI-FI<br />INTO REALITY
             </h2>
             <p className="statement-subtitle reveal reveal-delay-1" ref={subtitleRef}>
                 With deep curiosity,<br />I build the improbable.
