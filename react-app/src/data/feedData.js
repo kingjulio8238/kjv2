@@ -4,9 +4,21 @@ import onPolicyContent from '../content/on-policy.md?raw';
 import whyHyperionNowContent from '../content/why-hyperion-now.md?raw';
 import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?raw';
 import sovereignAiContent from '../content/sovereign-ai.md?raw';
+import hiring100xContent from '../content/hiring-100x-engineers.md?raw';
 import memaryImage from '../assets/memary.png';
 
 export const feedArticles = [
+  {
+    slug: 'hiring-100x-engineers',
+    title: "Evaluating 100x Engineers",
+    description: "Coding agents write most production code now. AQ measures the engineers who can actually direct them.",
+    tag: 'Company',
+    categories: ['AI', 'Hiring'],
+    image: '/feed-hiring-100x.png',
+    imageAlt: 'Hiring 100x Engineers',
+    date: 'March 2026',
+    content: hiring100xContent,
+  },
   {
     slug: 'sovereign-ai',
     title: "America's AI Hostage Crisis",
