@@ -3,9 +3,21 @@ import texasBlockchainContent from '../content/texas-blockchain.md?raw';
 import onPolicyContent from '../content/on-policy.md?raw';
 import whyHyperionNowContent from '../content/why-hyperion-now.md?raw';
 import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?raw';
+import sovereignAiContent from '../content/sovereign-ai.md?raw';
 import memaryImage from '../assets/memary.png';
 
 export const feedArticles = [
+  {
+    slug: 'sovereign-ai',
+    title: "America's AI Hostage Crisis",
+    description: "The US is fighting a war with AI tools it doesn\u2019t own. The case for sovereign AI.",
+    tag: 'Thought',
+    categories: ['AI', 'National Security'],
+    image: '/feed-sovereign-ai.png',
+    imageAlt: 'Sovereign AI',
+    date: 'March 2026',
+    content: sovereignAiContent,
+  },
   {
     slug: 'when-we-have-everything',
     title: 'When We Have Everything, What Do We Do?',
