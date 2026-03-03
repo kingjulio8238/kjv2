@@ -1,3 +1,0 @@
-- [ ] need to make mobile friendly
-- [ ] hero page either video of me or cool voice animation 
-- [ ]
