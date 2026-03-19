@@ -23,7 +23,7 @@ function App() {
           element={
             <main id="mainContent">
               <Hero />
-              <Statement />
+              {/* <Statement /> */}
               <Projects />
               <BioCta />
               <Feed />

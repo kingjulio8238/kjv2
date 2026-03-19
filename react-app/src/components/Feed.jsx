@@ -5,9 +5,7 @@ import { feedArticles } from '../data/feedData';
 export default function Feed() {
     const titleRef = useRef(null);
     const viewAllRef = useRef(null);
-    const card1Ref = useRef(null);
-    const card2Ref = useRef(null);
-    const card3Ref = useRef(null);
+    const listRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -21,19 +19,16 @@ export default function Feed() {
             { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
         );
 
-        const refs = [titleRef, viewAllRef, card1Ref, card2Ref, card3Ref];
-        refs.forEach((ref) => {
+        [titleRef, viewAllRef, listRef].forEach((ref) => {
             if (ref.current) observer.observe(ref.current);
         });
 
         return () => {
-            refs.forEach((ref) => {
+            [titleRef, viewAllRef, listRef].forEach((ref) => {
                 if (ref.current) observer.unobserve(ref.current);
             });
         };
     }, []);
-
-    const cardRefs = [card1Ref, card2Ref, card3Ref];
 
     return (
         <section className="feed" id="feed">
@@ -45,24 +40,18 @@ export default function Feed() {
                     VIEW ALL
                 </Link>
             </div>
-            <div className="feed-grid">
-                {feedArticles.slice(0, 3).map((article, i) => (
+            <div className="feed-list reveal reveal-delay-1" ref={listRef}>
+                {feedArticles.slice(0, 3).map((article) => (
                     <Link
                         to={`/feed/${article.slug}`}
-                        className={`feed-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}
+                        className="feed-list-item"
                         key={article.slug}
-                        ref={cardRefs[i]}
                     >
-                        <div className="feed-card-image">
-                            <img src={article.image} alt={article.imageAlt} />
-                        </div>
-                        <div className="feed-card-content">
-                            <div className="feed-card-title">{article.title}</div>
-                            <div className="feed-card-meta">
-                                <span className="feed-card-tag">{article.tag}</span>
-                                <span className="feed-card-date">{article.date}</span>
-                            </div>
-                        </div>
+                        <span className="feed-list-title">{article.title}</span>
+                        <span className="feed-list-meta">
+                            <span className="feed-list-tag">{article.tag}</span>
+                            <span className="feed-list-date">{article.date}</span>
+                        </span>
                     </Link>
                 ))}
             </div>

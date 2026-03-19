@@ -7,11 +7,11 @@ const bioContent = [
   { type: 'status', text: 'ACCESSING PERSONNEL FILE . . . . . VERIFIED' },
   { type: 'status', text: 'CLEARANCE LEVEL — CONFIDENTIAL' },
   { type: 'label', text: '// BACKGROUND' },
-  { type: 'body', text: 'Spawned in South Africa. Graduated from UT Austin. Building Continual Learning Infrastructure for AI Robotics in the Bay Area.' },
+  { type: 'body', text: 'Spawned in South Africa. Graduated from UT Austin. Exploring the atomic world.' },
   { type: 'label', text: '// EXPERIENCE' },
-  { type: 'body', text: 'Led many organizations throughout college, built Memary (2,600+ stars), and worked on world models to solve the Physical AI evaluation bottleneck.' },
+  { type: 'body', text: 'Led many organizations throughout college, built Humanoid Atlas, Memary (2,600+ stars), and previously worked on world models.', html: 'Led many organizations throughout college, built <a href="https://github.com/kingjulio8238/humanoid-atlas" target="_blank" rel="noopener noreferrer">Humanoid Atlas</a>, <a href="https://github.com/kingjulio8238/Memary" target="_blank" rel="noopener noreferrer">Memary</a> (2,600+ stars), and previously worked on world models.' },
   { type: 'label', text: '// INTERESTS' },
-  { type: 'body', text: 'Continual learning, world models, space, fully autonomous organizations, nano drones, and more.' },
+  { type: 'body', text: 'Physical autonomy, world & reward models, continual learning, space, nano drones, and more.' },
   { type: 'label', text: '// LESSON LEARNED' },
   { type: 'body', text: 'One is only bounded by their breadth and depth of their curiosity.' },
   { type: 'end', text: '[END OF FILE]' },
@@ -88,7 +88,7 @@ export default function BioPage() {
             key={i}
             className={`bio-t-block bio-t-${b.type}${b.type === 'status' ? ' bio-t-dim' : ''}`}
           >
-            {b.text}
+            {b.html ? <span dangerouslySetInnerHTML={{ __html: b.html }} /> : b.text}
           </div>
         ))}
 

@@ -3,7 +3,7 @@ export default function Hero() {
         <section className="hero" id="hero">
             <div className="hero-content">
                 <h1 className="hero-headline">
-                    EXPLORING THE<br />WORLD&apos;S MOST<br />EXCITING PROBLEMS
+                    EXPLORING THE ATOMIC WORLD
                 </h1>
             </div>
         </section>

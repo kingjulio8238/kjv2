@@ -4,7 +4,7 @@ import { feedArticles } from '../data/feedData';
 
 export default function FeedPage() {
   const headingRef = useRef(null);
-  const cardRefs = useRef([]);
+  const listRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -19,39 +19,29 @@ export default function FeedPage() {
     );
 
     if (headingRef.current) observer.observe(headingRef.current);
-    cardRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    if (listRef.current) observer.observe(listRef.current);
 
     return () => {
       if (headingRef.current) observer.unobserve(headingRef.current);
-      cardRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      if (listRef.current) observer.unobserve(listRef.current);
     };
   }, []);
 
   return (
     <section className="feed-page">
       <h1 className="feed-page-heading reveal" ref={headingRef}>THE FEED</h1>
-      <div className="feed-page-grid">
-        {feedArticles.map((article, i) => (
+      <div className="feed-list reveal" ref={listRef}>
+        {feedArticles.map((article) => (
           <Link
             to={`/feed/${article.slug}`}
-            className={`feed-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}
+            className="feed-list-item"
             key={article.slug}
-            ref={(el) => (cardRefs.current[i] = el)}
           >
-            <div className="feed-card-image">
-              <img src={article.image} alt={article.imageAlt} />
-            </div>
-            <div className="feed-card-content">
-              <div className="feed-card-title">{article.title}</div>
-              <div className="feed-card-meta">
-                <span className="feed-card-tag">{article.tag}</span>
-                <span className="feed-card-date">{article.date}</span>
-              </div>
-            </div>
+            <span className="feed-list-title">{article.title}</span>
+            <span className="feed-list-meta">
+              <span className="feed-list-tag">{article.tag}</span>
+              <span className="feed-list-date">{article.date}</span>
+            </span>
           </Link>
         ))}
       </div>

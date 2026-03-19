@@ -31,7 +31,7 @@ export default function Statement() {
                 TURNING SCI-FI<br />INTO REALITY
             </h2>
             <p className="statement-subtitle reveal reveal-delay-1" ref={subtitleRef}>
-                With deep curiosity,<br />I build the improbable.
+                With deep curiosity,<br />I build the improbable
             </p>
         </section>
     );
