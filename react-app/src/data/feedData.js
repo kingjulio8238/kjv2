@@ -4,8 +4,18 @@ import onPolicyContent from '../content/on-policy.md?raw';
 import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?raw';
 import sovereignAiContent from '../content/sovereign-ai.md?raw';
 import humanoidAtlasContent from '../content/humanoid-atlas.md?raw';
+import fromDreamsContent from '../content/from-dreams-to-abundant-labor.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'from-dreams-to-abundant-labor',
+    title: 'From Dreams to Abundant Labor',
+    description: 'How world models play 3 key roles in improving physical autonomy.',
+    tag: 'Thought',
+    categories: ['Robotics', 'World Models', 'AI'],
+    date: 'March 2026',
+    content: fromDreamsContent,
+  },
   {
     slug: 'humanoid-atlas',
     title: 'Humanoid Atlas',
