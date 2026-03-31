@@ -309,7 +309,7 @@ a {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: clamp(12px, 0.85vw, 14px);
-  color: rgba(255, 255, 255, 0.4);
+  color: #fff;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -445,7 +445,7 @@ a {
   font-family: var(--font-body);
   font-weight: 500;
   font-size: clamp(12px, 0.85vw, 14px);
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -454,7 +454,7 @@ a {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: clamp(12px, 0.85vw, 14px);
-  color: rgba(255, 255, 255, 0.4);
+  color: #fff;
 }
 
 /* ========== FOOTER ========== */
@@ -879,7 +879,7 @@ a {
   font-size: clamp(12px, 0.85vw, 15px);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #fff;
   margin-bottom: clamp(16px, 2vw, 32px);
 }
 

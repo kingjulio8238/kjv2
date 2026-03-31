@@ -5,8 +5,18 @@ import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?r
 import sovereignAiContent from '../content/sovereign-ai.md?raw';
 import humanoidAtlasContent from '../content/humanoid-atlas.md?raw';
 import fromDreamsContent from '../content/from-dreams-to-abundant-labor.md?raw';
+import jepasWorldContent from '../content/jepas-world.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'jepas-world',
+    title: "It's JEPA's World & We're Just Living in It",
+    description: 'A breakdown of the JEPA family - from latent prediction to world models.',
+    tag: 'Thought',
+    categories: ['AI', 'World Models', 'Robotics'],
+    date: 'March 2026',
+    content: jepasWorldContent,
+  },
   {
     slug: 'from-dreams-to-abundant-labor',
     title: 'From Dreams to Abundant Labor',

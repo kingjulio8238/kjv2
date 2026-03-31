@@ -20,7 +20,7 @@ export default function FeedArticlePage() {
 
   return (
     <section className="feed-article">
-      <span className="feed-article-meta">{article.tag} &mdash; {article.date}</span>
+      <span className="feed-article-meta">{article.tag} - {article.date}</span>
       <h1 className="feed-article-heading">{article.title}</h1>
       <div className="feed-article-body">
         <ReactMarkdown>{article.content}</ReactMarkdown>
