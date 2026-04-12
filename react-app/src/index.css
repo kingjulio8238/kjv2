@@ -965,6 +965,13 @@ a {
   font-style: italic;
 }
 
+.feed-article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
 /* ========== REVEAL ANIMATIONS ========== */
 .reveal {
   opacity: 0;

@@ -5,9 +5,19 @@ import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?r
 import sovereignAiContent from '../content/sovereign-ai.md?raw';
 import humanoidAtlasContent from '../content/humanoid-atlas.md?raw';
 import fromDreamsContent from '../content/from-dreams-to-abundant-labor.md?raw';
+import jepaZooContent from '../content/jepa-zoo.md?raw';
 import jepasWorldContent from '../content/jepas-world.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'jepa-zoo',
+    title: 'JEPA Zoo',
+    description: 'All JEPA variants visualized — interactive walkthroughs, architecture diagrams, and an evolution tree.',
+    tag: 'Project',
+    categories: ['AI', 'World Models'],
+    date: 'April 2026',
+    content: jepaZooContent,
+  },
   {
     slug: 'jepas-world',
     title: "It's JEPA's World & We're Just Living in It",
