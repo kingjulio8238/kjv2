@@ -5,10 +5,20 @@ import whenWeHaveEverythingContent from '../content/when-we-have-everything.md?r
 import sovereignAiContent from '../content/sovereign-ai.md?raw';
 import humanoidAtlasContent from '../content/humanoid-atlas.md?raw';
 import fromDreamsContent from '../content/from-dreams-to-abundant-labor.md?raw';
+import harmonicDriveContent from '../content/harmonic-drive-shortage.md?raw';
 import jepaZooContent from '../content/jepa-zoo.md?raw';
 import jepasWorldContent from '../content/jepas-world.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'harmonic-drive-shortage',
+    title: 'Own Both the Brains & the Muscle',
+    description: 'The US builds robots but imports every joint. Why domestic harmonic drive manufacturing is a national security priority.',
+    tag: 'Thought',
+    categories: ['Robotics', 'Supply Chain'],
+    date: 'April 2026',
+    content: harmonicDriveContent,
+  },
   {
     slug: 'jepa-zoo',
     title: 'JEPA Zoo',
