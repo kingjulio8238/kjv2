@@ -15,7 +15,7 @@ export const feedArticles = [
     slug: 'tactile-world-models',
     title: 'Tactile World Models',
     description: 'Robots can see but can\'t feel. Video + actions should be enough to predict touch.',
-    tag: 'Thought',
+    tag: 'Project',
     categories: ['Robotics', 'World Models', 'AI'],
     date: 'April 2026',
     content: tactileWorldModelsContent,
