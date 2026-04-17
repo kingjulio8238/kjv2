@@ -8,8 +8,18 @@ import fromDreamsContent from '../content/from-dreams-to-abundant-labor.md?raw';
 import harmonicDriveContent from '../content/harmonic-drive-shortage.md?raw';
 import jepaZooContent from '../content/jepa-zoo.md?raw';
 import jepasWorldContent from '../content/jepas-world.md?raw';
+import tactileWorldModelsContent from '../content/tactile-world-models.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'tactile-world-models',
+    title: 'Tactile World Models',
+    description: 'Robots can see but can\'t feel. Video + actions should be enough to predict touch.',
+    tag: 'Thought',
+    categories: ['Robotics', 'World Models', 'AI'],
+    date: 'April 2026',
+    content: tactileWorldModelsContent,
+  },
   {
     slug: 'harmonic-drive-shortage',
     title: 'Own Both the Brains & the Muscle',
