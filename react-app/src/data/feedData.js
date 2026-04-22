@@ -9,8 +9,18 @@ import harmonicDriveContent from '../content/harmonic-drive-shortage.md?raw';
 import jepaZooContent from '../content/jepa-zoo.md?raw';
 import jepasWorldContent from '../content/jepas-world.md?raw';
 import tactileWorldModelsContent from '../content/tactile-world-models.md?raw';
+import theActuatorRaceContent from '../content/the-actuator-race.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'the-actuator-race',
+    title: 'The Actuator Race',
+    description: 'Actuators are 56% of every humanoid. The US builds almost none of them. The case for a domestic rotary and linear actuator industry.',
+    tag: 'Thought',
+    categories: ['Robotics', 'Supply Chain'],
+    date: 'April 2026',
+    content: theActuatorRaceContent,
+  },
   {
     slug: 'tactile-world-models',
     title: 'Tactile World Models',
