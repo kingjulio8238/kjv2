@@ -10,8 +10,18 @@ import jepaZooContent from '../content/jepa-zoo.md?raw';
 import jepasWorldContent from '../content/jepas-world.md?raw';
 import tactileWorldModelsContent from '../content/tactile-world-models.md?raw';
 import theActuatorRaceContent from '../content/the-actuator-race.md?raw';
+import alliedSupplyChainContent from '../content/allied-supply-chain.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'allied-supply-chain',
+    title: 'The Allied Supply Chain',
+    description: 'US defense startups have to move fast, stay NDAA-compliant, and keep BOM costs low. Today they can pick two — unless they source from Japan.',
+    tag: 'Thought',
+    categories: ['Robotics', 'Supply Chain', 'National Security'],
+    date: 'May 2026',
+    content: alliedSupplyChainContent,
+  },
   {
     slug: 'the-actuator-race',
     title: 'The Actuator Race',
