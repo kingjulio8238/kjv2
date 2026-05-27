@@ -11,8 +11,18 @@ import jepasWorldContent from '../content/jepas-world.md?raw';
 import tactileWorldModelsContent from '../content/tactile-world-models.md?raw';
 import theActuatorRaceContent from '../content/the-actuator-race.md?raw';
 import alliedSupplyChainContent from '../content/allied-supply-chain.md?raw';
+import onePersonUnicornContent from '../content/one-person-unicorn.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'one-person-unicorn',
+    title: 'The One-Person Unicorn',
+    description: 'For the first time, a single founder can run the work of fifty. The first one-person unicorn is closer than people think — and the constraint has shifted from labor to judgment.',
+    tag: 'Thought',
+    categories: ['AI', 'Future'],
+    date: 'May 2026',
+    content: onePersonUnicornContent,
+  },
   {
     slug: 'allied-supply-chain',
     title: 'The Allied Supply Chain',
