@@ -16,7 +16,7 @@ import onePersonUnicornContent from '../content/one-person-unicorn.md?raw';
 export const feedArticles = [
   {
     slug: 'one-person-unicorn',
-    title: 'The One-Person Unicorn',
+    title: 'The One Person Unicorn',
     description: 'For the first time, a single founder can run the work of fifty. The first one-person unicorn is closer than people think — and the constraint has shifted from labor to judgment.',
     tag: 'Thought',
     categories: ['AI', 'Future'],
