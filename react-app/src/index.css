@@ -1160,3 +1160,9 @@ a {
     display: inline-block;
   }
 }
+
+/* nanoG1 chart animations (from the Claude Design "Time to walk" handoff) */
+@keyframes ttw-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes ttw-growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ttw-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); }
+}

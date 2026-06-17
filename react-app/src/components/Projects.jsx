@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 
 const projects = [
     {
-        name: 'Universal Atomic Intelligence (UAI)',
-        description: 'BUILDING AUTONOMY FOR THE ATOMIC WORLD',
-        url: '',
+        name: 'nanoG1',
+        description: 'Train a G1 to walk in < 60s',
+        url: 'https://g1-sub60-walk.vercel.app',
     },
     {
         name: 'Humanoid Atlas',

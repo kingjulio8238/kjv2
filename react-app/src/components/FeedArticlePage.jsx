@@ -1,6 +1,23 @@
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { feedArticles } from '../data/feedData';
+import Chart from './charts/NanoG1Charts';
+
+const CHART = '/chart/';
+const isChart = (src) => typeof src === 'string' && src.startsWith(CHART);
+
+// route ![](/chart/<id>) image links to live React chart components;
+// unwrap their paragraph so the chart <div> isn't nested inside a <p>
+const components = {
+  img({ src, alt }) {
+    return isChart(src) ? <Chart id={src.slice(CHART.length)} /> : <img src={src} alt={alt} />;
+  },
+  p({ node, children }) {
+    const only = node?.children?.length === 1 ? node.children[0] : null;
+    if (only?.tagName === 'img' && isChart(only.properties?.src)) return <>{children}</>;
+    return <p>{children}</p>;
+  },
+};
 
 export default function FeedArticlePage() {
   const { slug } = useParams();
@@ -23,7 +40,7 @@ export default function FeedArticlePage() {
       <span className="feed-article-meta">{article.tag} - {article.date}</span>
       <h1 className="feed-article-heading">{article.title}</h1>
       <div className="feed-article-body">
-        <ReactMarkdown>{article.content}</ReactMarkdown>
+        <ReactMarkdown components={components}>{article.content}</ReactMarkdown>
       </div>
     </section>
   );

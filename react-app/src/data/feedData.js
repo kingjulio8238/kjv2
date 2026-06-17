@@ -12,8 +12,18 @@ import tactileWorldModelsContent from '../content/tactile-world-models.md?raw';
 import theActuatorRaceContent from '../content/the-actuator-race.md?raw';
 import alliedSupplyChainContent from '../content/allied-supply-chain.md?raw';
 import onePersonUnicornContent from '../content/one-person-unicorn.md?raw';
+import nanoG1Content from '../content/nanog1.md?raw';
 
 export const feedArticles = [
+  {
+    slug: 'nanog1',
+    title: 'A G1 That Learns to Walk in <60 Seconds',
+    description: 'A Unitree G1 humanoid learns to walk from scratch with pure reinforcement learning, on one graphics card. The first walk took ~6 hours; the last took 58.9 seconds — a ~380× speedup. How it got there, in plots.',
+    tag: 'Project',
+    categories: ['Robotics', 'RL', 'AI'],
+    date: 'June 2026',
+    content: nanoG1Content,
+  },
   {
     slug: 'one-person-unicorn',
     title: 'The One Person Unicorn',
