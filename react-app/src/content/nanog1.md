@@ -50,7 +50,7 @@ Getting under a minute was not a straight line. Every other way of cutting pract
 
 The trained robot runs live in the browser — drive it with the arrow keys. Everything is open source: train your own G1 in under a minute on a single GPU.
 
-- **Live demo** : [g1-sub60-walk.vercel.app](https://g1-sub60-walk.vercel.app)
+- **Live demo** : [nanog1.com](https://nanog1.com)
 - **Code** : [github.com/kingjulio8238/nanoG1](https://github.com/kingjulio8238/nanoG1)
 - **Model** : [huggingface.co/kingJulio/nanoG1](https://huggingface.co/kingJulio/nanoG1)
 

@@ -4,7 +4,7 @@ const projects = [
     {
         name: 'nanoG1',
         description: 'Train a G1 to walk in < 60s',
-        url: 'https://g1-sub60-walk.vercel.app',
+        url: 'https://nanog1.com',
     },
     {
         name: 'Humanoid Atlas',
