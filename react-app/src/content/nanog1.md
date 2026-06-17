@@ -12,7 +12,7 @@ Training time comes down to one ratio: how many practice steps the robot needs, 
 
 ## A Faster Engine (24×)
 
-Physics simulation isn't slow for reinforcement learning — it's just never been specialized for a single robot. I compile the simulator for one fixed robot, so its body structure and contact points become built-in constants and the physics turns into lean, specialized code with none of the usual general-purpose overhead. Throughput went from **54,000 to 1.3 million practice steps per second** — about **8.9 million physics steps per second** — on a single RTX PRO 6000, ahead of every general-purpose simulator.
+Physics simulation isn't slow for reinforcement learning — it's just never been specialized for a single robot. I compile the simulator for one fixed robot, so its body structure and contact points become built-in constants and the physics turns into lean, specialized code with none of the usual general-purpose overhead. Throughput went from **54,000 to 1.3 million practice steps per second**; in raw physics stepping the engine hits about **8.5 million steps per second** on a single RTX PRO 6000 — and at a general-purpose simulator's *exact* settings, **1.8× the fastest** of them.
 
 ![Engine throughput vs other simulators](/chart/throughput)
 

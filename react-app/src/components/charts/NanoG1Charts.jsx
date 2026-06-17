@@ -225,9 +225,9 @@ export default function Chart({ id }) {
       );
     case 'throughput':
       return (
-        <Card sub={<>physics steps per second &middot; Unitree G1 &middot; one graphics card&nbsp;&nbsp;(*Genesis uses its own physics, not MuJoCo)</>}>
-          <HBars max={10.2} bars={[
-            { label: 'nanoG1', value: 8.9, text: '8.9M', tone: 'win' },
+        <Card sub={<>physics steps per second &middot; Unitree G1 &middot; RTX PRO 6000 &middot; identical settings&nbsp;&nbsp;(*Genesis uses its own physics, not MuJoCo)</>}>
+          <HBars max={8.0} bars={[
+            { label: 'nanoG1', value: 7.25, text: '7.25M', tone: 'win' },
             { label: 'mujoco-warp', value: 4.0, text: '4.0M', tone: 'gray' },
             { label: 'Genesis*', value: 2.3, text: '2.3M', tone: 'gray' },
             { label: 'MJX', value: 1.1, text: '1.1M', tone: 'gray' },
