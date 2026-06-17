@@ -18,7 +18,7 @@ export const feedArticles = [
   {
     slug: 'nanog1',
     title: 'A G1 That Learns to Walk in <60 Seconds',
-    description: 'A Unitree G1 humanoid learns to walk from scratch with pure reinforcement learning, on one graphics card. The first walk took ~6 hours; the last took 58.9 seconds — a ~380× speedup. How it got there, in plots.',
+    description: 'A Unitree G1 humanoid learns to walk from scratch with pure reinforcement learning, on one graphics card. The first walk took ~6.1 hours; the last took 58.9 seconds — a ~375× speedup. How it got there, in plots.',
     tag: 'Project',
     categories: ['Robotics', 'RL', 'AI'],
     date: 'June 2026',

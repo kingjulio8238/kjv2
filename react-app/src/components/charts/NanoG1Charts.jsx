@@ -191,7 +191,7 @@ function StatRow() {
       <Op s="×" />
       <Stat big="16×" sub={'learning efficiency\n1.2B → 75M practice steps'} color="#a9c99d" />
       <Op s="=" />
-      <Stat big="~380×" sub={'6 hours → 58.9 seconds'} color="#e3852f" />
+      <Stat big="~375×" sub={'6.1 hours → 58.9 seconds'} color="#e3852f" />
     </div>
   );
 }
@@ -275,7 +275,7 @@ export default function Chart({ id }) {
             { label: 'speed tracking', value: 0.966, text: '0.93 / ≥0.90', tone: 'green' },
             { label: 'action smoothness', value: 0.924, text: '0.19 / 0.21', tone: 'green' },
             { label: 'torso wobble', value: 0.962, text: '0.20 / 0.21', tone: 'green' },
-            { label: 'turn stability', value: 0.980, text: '0.20 / 0.20', tone: 'green' },
+            { label: 'turn stability', value: 0.980, text: '0.196 / 0.20', tone: 'green' },
             { label: 'leg smoothness', value: 0.947, text: '1.16 / 1.22', tone: 'green' },
           ]} />
         </Card>

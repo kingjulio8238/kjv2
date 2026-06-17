@@ -1,4 +1,4 @@
-A Unitree G1 humanoid, learning to walk **from scratch** with pure reinforcement learning on **a single GPU**. The first full walk took **~6 hours**. The last one took **58.9 seconds** — a **~380× speedup in 6 days**.
+A Unitree G1 humanoid, learning to walk **from scratch** with pure reinforcement learning on **a single GPU**. The first full walk took **~6.1 hours**. The last one took **58.9 seconds** — a **~375× speedup in 6 days**.
 
 ![Time to walk](/chart/waterfall)
 
@@ -6,7 +6,7 @@ This is what nanoGPT is to language models, but for robot locomotion. Here's how
 
 ## The Clock
 
-Training time comes down to one ratio: how many practice steps the robot needs, divided by how many of those steps you can run per second. The two **multiply**, so there are only two levers — cut the steps, or run them faster. I pulled both: a **24× faster simulator** and a **16× more efficient learning recipe**, which together give the ~380×.
+Training time comes down to one ratio: how many practice steps the robot needs, divided by how many of those steps you can run per second. The two **multiply**, so there are only two levers — cut the steps, or run them faster. I pulled both: a **24× faster simulator** and a **16× more efficient learning recipe**, which together give the ~375×.
 
 ![Two levers multiply to 380x](/chart/decomposition)
 
