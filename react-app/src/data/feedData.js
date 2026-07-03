@@ -13,6 +13,50 @@ import theActuatorRaceContent from '../content/the-actuator-race.md?raw';
 import alliedSupplyChainContent from '../content/allied-supply-chain.md?raw';
 import onePersonUnicornContent from '../content/one-person-unicorn.md?raw';
 import nanoG1Content from '../content/nanog1.md?raw';
+import wan89xContent from '../content/wan-89x.md?raw';
+
+// Inferencemaxxing — the inference/kernel work, a collection (feed-within-a-feed).
+// Each entry is tagged by the kernel it's about; the hub row's tag tracks the
+// kernel currently in focus. Each entry carries a model-unique `timeline`: the
+// scalar we drive down (for video-gen, seconds-per-clip), with a stop at each
+// build milestone. The SpeedTimeline component renders it, synced to the h2
+// sections whose text matches each stop's `heading`.
+export const inferenceArticles = [
+  {
+    slug: 'wan-89x',
+    title: 'Making Wan Video Gen 89× Faster',
+    description: 'How an open video-diffusion model went from 365 seconds to 4.0 seconds per clip on one B200 — six changes, each measured by the clock it left us at. The hand-CUDA kernel is one of them.',
+    tag: 'VSA',
+    categories: ['Inference', 'GPU', 'Video'],
+    date: 'July 2026',
+    content: wan89xContent,
+    timeline: {
+      metric: 'video generation',
+      unit: 's',
+      hint: '832×480 · 81 frames · one B200 · warm median',
+      stops: [
+        { heading: 'The Dense Baseline', value: '365', mult: '1×' },
+        { heading: 'Going Below the DSL', value: '215', mult: '1.7×' },
+        { heading: 'Four Steps, Not Forty', value: '11.2', mult: '32.6×' },
+        { heading: 'Let the Compiler Fuse the Glue', value: '6.9', mult: '53×' },
+        { heading: 'Four-Bit Math', value: '5.1', mult: '71×' },
+        { heading: 'Stack, and Ship', value: '4.0', mult: '89×' },
+      ],
+    },
+  },
+];
+
+// The hub row shown in the main feed. Clicking it opens the collection page
+// (a sub-feed), not a single article. Tag = the kernel in focus; date tracks
+// the newest entry inside.
+export const inferenceCollection = {
+  slug: 'inferencemaxxing',
+  title: 'Inferencemaxxing',
+  description: 'Making advanced, non-LLM models fast and cheap to serve — kernels, roofline floors, and the runtime beneath the DSLs.',
+  tag: inferenceArticles[0]?.tag ?? 'VSA',
+  date: inferenceArticles[0]?.date ?? '',
+  isCollection: true,
+};
 
 export const feedArticles = [
   {
@@ -151,3 +195,6 @@ export const feedArticles = [
     content: texasBlockchainContent,
   },
 ];
+
+// Every article the article page can resolve by slug (top-level + collections).
+export const allArticles = [...feedArticles, ...inferenceArticles];

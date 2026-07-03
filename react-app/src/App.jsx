@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ContactPage from './components/ContactPage';
 import BioPage from './components/BioPage';
 import FeedPage from './components/FeedPage';
+import CollectionPage from './components/CollectionPage';
 import FeedArticlePage from './components/FeedArticlePage';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/bio" element={<><BioPage /><Footer /></>} />
         <Route path="/contact" element={<><ContactPage /><Footer /></>} />
         <Route path="/feed" element={<><FeedPage /><Footer /></>} />
+        <Route path="/feed/inferencemaxxing" element={<><CollectionPage /><Footer /></>} />
         <Route path="/feed/:slug" element={<><FeedArticlePage /><Footer /></>} />
       </Routes>
     </>

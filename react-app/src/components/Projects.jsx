@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const projects = [
+    {
+        name: 'Inferencemaxxing',
+        description: 'World\'s-fastest kernels for advanced AI models',
+        to: '/feed/inferencemaxxing',
+    },
     {
         name: 'nanoG1',
         description: 'Train a G1 to walk in < 60s',
@@ -44,16 +50,27 @@ export default function Projects() {
         <section className="projects" id="projects">
             <div className="projects-list reveal" ref={listRef}>
                 {projects.map((project) => (
-                    <a
-                        href={project.url || undefined}
-                        target={project.url ? '_blank' : undefined}
-                        rel={project.url ? 'noopener noreferrer' : undefined}
-                        className={`projects-list-item${project.url ? '' : ' projects-list-item--disabled'}`}
-                        key={project.name}
-                    >
-                        <span className="projects-list-name">{project.name}</span>
-                        <span className="projects-list-desc">{project.description}</span>
-                    </a>
+                    project.to ? (
+                        <Link
+                            to={project.to}
+                            className="projects-list-item"
+                            key={project.name}
+                        >
+                            <span className="projects-list-name">{project.name}</span>
+                            <span className="projects-list-desc">{project.description}</span>
+                        </Link>
+                    ) : (
+                        <a
+                            href={project.url || undefined}
+                            target={project.url ? '_blank' : undefined}
+                            rel={project.url ? 'noopener noreferrer' : undefined}
+                            className={`projects-list-item${project.url ? '' : ' projects-list-item--disabled'}`}
+                            key={project.name}
+                        >
+                            <span className="projects-list-name">{project.name}</span>
+                            <span className="projects-list-desc">{project.description}</span>
+                        </a>
+                    )
                 ))}
             </div>
         </section>
