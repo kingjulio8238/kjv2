@@ -17,6 +17,7 @@ import wan89xContent from '../content/wan-89x.md?raw';
 import indexDecodeBoundContent from '../content/index-decode-bound.md?raw';
 import tokensAreAKnobContent from '../content/tokens-are-a-knob.md?raw';
 import decodeMeasuredContent from '../content/decode-measured.md?raw';
+import loaderGateFailsContent from '../content/loader-gate-fails.md?raw';
 
 // Inferencemaxxing — the inference/kernel work, a collection (feed-within-a-feed).
 // Each entry is tagged by the kernel it's about; the hub row's tag tracks the
@@ -66,6 +67,15 @@ export const inferenceCollection = {
 // piece and reproducible from notes/b1.py. Entries run newest-first; the hub
 // row's tag tracks the question currently in focus.
 export const roboticsArticles = [
+  {
+    slug: 'loader-gate-fails',
+    title: 'A Loader 8x Faster Than Yours, That Still Fails',
+    description: 'I built the video loader the measurements called for. It beats the obvious implementation 8.2x on a real training loop and still cannot keep an H100 busy below ~3B parameters — because the data-path cost is constant and the floor is not in the code.',
+    tag: 'Measured',
+    categories: ['Robotics', 'Video', 'GPU'],
+    date: 'September 2026',
+    content: loaderGateFailsContent,
+  },
   {
     slug: 'decode-measured',
     title: 'I Measured the Decode Floor for $2.18',

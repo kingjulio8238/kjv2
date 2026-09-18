@@ -4,7 +4,7 @@
  * tokenizer, decode measured against NVIDIA's PyNvVideoCodec 1080p H.264
  * figures. One <Chart id="helix-..."/> per figure. */
 
-import { Card, HBars, VLogBars } from './chartKit';
+import { Card, HBars, VBars, VLogBars } from './chartKit';
 
 export default function HelixChart({ id }) {
   /* frames/s a single H100 can TRAIN, by model size, against what it can DECODE.
@@ -55,6 +55,48 @@ export default function HelixChart({ id }) {
             { value: 407, text: '407M', label: '1080p\nsource', tone: 'gray' },
             { value: 193, text: '193M', label: '720p\nsource', tone: 'green' },
             { value: 103, text: '103M', label: '480p\nsource', tone: 'green' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
+  /* the loader result: 8.2x from decoding whole clips instead of seeking */
+  if (id === 'helix-loader-8x') {
+    return (
+      <Card sub="Milliseconds per training step at 150M parameters. The dashed line is the ceiling — the same model fed pre-made tensors, with no data path at all. Lower is better.">
+        <VLogBars
+          vmin={60}
+          vmax={3000}
+          gridlines={[
+            { value: 100, label: '100ms' },
+            { value: 1000, label: '1s' },
+          ]}
+          target={93}
+          targetLabel="ceiling · 93 ms"
+          bars={[
+            { value: 2296, text: '2,296', label: 'naive\nseek per sample', tone: 'fail' },
+            { value: 280, text: '280', label: 'whole clip\nserial', tone: 'win' },
+            { value: 273, text: '273', label: 'whole clip\n+ overlap', tone: 'win' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
+  /* gate GC: efficiency climbs with model size and still misses 0.80 */
+  if (id === 'helix-gate-gc') {
+    return (
+      <Card sub="Data-path efficiency — step time fed by real video, divided by step time fed by pre-made tensors. 1.0 means the loader is free. The dashed line is the 80% bar; every size measured misses it, and the extrapolation puts the crossing near 3B. Only measured points are plotted.">
+        <VBars
+          max={1.0}
+          limit={0.8}
+          limitLabel="gate · 0.80"
+          bars={[
+            { value: 0.206, text: '0.206', label: '150M', tone: 'fail' },
+            { value: 0.532, text: '0.532', label: '450M', tone: 'gray' },
+            { value: 0.595, text: '0.595', label: '900M', tone: 'gray' },
+            { value: 0.685, text: '0.685', label: '1.8B', tone: 'green' },
           ]}
         />
       </Card>
