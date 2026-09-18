@@ -61,6 +61,67 @@ export default function HelixChart({ id }) {
     );
   }
 
+  /* NVDEC concurrency: the scaling curve finds the 7-engine ceiling unaided */
+  if (id === 'helix-nvdec-scaling') {
+    return (
+      <Card sub="Decode throughput against concurrent decoder instances, real egocentric video at 1920×1456. Going from 1 to 7 workers buys 5.14×; going from 7 to 14 buys 1.09×. The H100 has exactly 7 NVDEC engines, and the curve finds them without being told.">
+        <VLogBars
+          vmin={200}
+          vmax={2000}
+          gridlines={[
+            { value: 250, label: '250' },
+            { value: 500, label: '500' },
+            { value: 1000, label: '1k' },
+          ]}
+          target={1352}
+          targetLabel="7 NVDEC engines"
+          bars={[
+            { value: 263, text: '263', label: '1\nworker', tone: 'fail' },
+            { value: 552, text: '552', label: '2', tone: 'gray' },
+            { value: 744, text: '744', label: '4', tone: 'gray' },
+            { value: 1352, text: '1,352', label: '7', tone: 'win' },
+            { value: 1470, text: '1,470', label: '14', tone: 'green' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
+  /* the sampling policy result: concurrency rescues whole clips, not random windows */
+  if (id === 'helix-sampling-policy') {
+    return (
+      <Card sub="GPUs of pure decode needed to keep pace with Index at 2,100× realtime, stereo. Identical supervision either way — the difference is entirely how you sample.">
+        <HBars
+          max={3100}
+          labelW={214}
+          bars={[
+            { value: 147, text: '147 GPUs', label: 'whole clip · 7 workers', tone: 'win' },
+            { value: 479, text: '479 GPUs', label: 'whole clip · 1 worker', tone: 'gray' },
+            { value: 1443, text: '1,443 GPUs', label: '16-frame windows · 7 workers', tone: 'fail' },
+            { value: 2295, text: '2,295 GPUs', label: '16-frame windows · 1 worker', tone: 'fail' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
+  /* the falsified prediction */
+  if (id === 'helix-gop-falsified') {
+    return (
+      <Card sub="Random 16-frame windows, by keyframe interval. I predicted longer GOP would be slower — more frames to decode forward from the preceding keyframe. Measured, it is the other way round.">
+        <HBars
+          max={62}
+          labelW={190}
+          bars={[
+            { value: 24.4, text: '24.4 fps', label: 'GOP 15 (predicted best)', tone: 'fail' },
+            { value: 41.7, text: '41.7 fps', label: 'GOP 170 (native)', tone: 'gray' },
+            { value: 47.2, text: '47.2 fps', label: 'GOP 250 (predicted worst)', tone: 'win' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
   /* one hour of Index, three ways to keep it. Latents are SMALLER than the
    * compressed source they came from — you discard resolution you'd never train on. */
   if (id === 'helix-storage') {

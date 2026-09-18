@@ -16,6 +16,7 @@ import nanoG1Content from '../content/nanog1.md?raw';
 import wan89xContent from '../content/wan-89x.md?raw';
 import indexDecodeBoundContent from '../content/index-decode-bound.md?raw';
 import tokensAreAKnobContent from '../content/tokens-are-a-knob.md?raw';
+import decodeMeasuredContent from '../content/decode-measured.md?raw';
 
 // Inferencemaxxing — the inference/kernel work, a collection (feed-within-a-feed).
 // Each entry is tagged by the kernel it's about; the hub row's tag tracks the
@@ -65,6 +66,15 @@ export const inferenceCollection = {
 // piece and reproducible from notes/b1.py. Entries run newest-first; the hub
 // row's tag tracks the question currently in focus.
 export const roboticsArticles = [
+  {
+    slug: 'decode-measured',
+    title: 'I Measured the Decode Floor for $2.18',
+    description: 'The paper analysis put the decode/compute crossover at 407M parameters. Measured on an H100 against real egocentric video, it is 2.4B — and the largest factor is a sampling choice no VLA paper states, worth a 9.8x swing in fleet size. Includes the prediction I got backwards.',
+    tag: 'Measured',
+    categories: ['Robotics', 'Video', 'GPU'],
+    date: 'September 2026',
+    content: decodeMeasuredContent,
+  },
   {
     slug: 'tokens-are-a-knob',
     title: 'Tokens Are a Knob, Not a Measurement',
