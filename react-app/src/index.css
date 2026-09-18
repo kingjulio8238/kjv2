@@ -1202,3 +1202,36 @@ a {
   .spd-dot-val { display: none; }
   .spd-dot--active .spd-dot-val { display: block; }
 }
+
+/* --- Article tables (GFM). First used by the Robotics collection; scrolls
+   horizontally on narrow screens rather than breaking the column. --- */
+.feed-article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+}
+.feed-article-body thead th {
+    text-align: left;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    white-space: nowrap;
+}
+.feed-article-body tbody td {
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.72);
+}
+.feed-article-body tbody tr:last-child td { border-bottom: none; }
+.feed-article-body tbody td strong { color: rgba(255, 255, 255, 0.95); font-weight: 600; }
+.feed-article-body thead th:not(:first-child),
+.feed-article-body tbody td:not(:first-child) { text-align: right; padding-right: 0; }
+.feed-article-body thead th:first-child,
+.feed-article-body tbody td:first-child { padding-right: 24px; }
+
+@media (max-width: 700px) {
+    .feed-article-body table { font-size: 13.5px; display: block; overflow-x: auto; }
+}

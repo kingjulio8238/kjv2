@@ -1,4 +1,6 @@
-Figure's Index collects **35 minutes of new human video every second** — 50,400 hours a day, 2,100× realtime, uploaded from phones in 108 countries. The obvious worry is storage. The arithmetic says storage is a rounding error, and the real constraint sits somewhere almost nobody looks: the **video decoder**. On one H100 the crossover between decode-bound and compute-bound training lands at **412 million parameters** — which means the production model is fine and *every scaling-law ablation is not*.
+Figure's Index collects **35 minutes of new human video every second** — 50,400 hours a day, 2,100× realtime, uploaded from phones in 108 countries. The obvious worry is storage. The arithmetic says storage is a rounding error, and the real constraint sits somewhere almost nobody looks: the **video decoder**. On one H100 the crossover between decode-bound and compute-bound training lands at **407 million parameters** — which means the production model is fine and *every scaling-law ablation is not*.
+
+Except that number isn't robust, and chasing down why turned out to be the more interesting result.
 
 This is an outside analysis. Every input is public and cited; the assumptions are marked, and the ones that would move the answer are listed at the end.
 
@@ -45,6 +47,34 @@ Worse, read the formula again. N_crit moves **linearly with decode throughput** 
 
 In aggregate, decode is cheap: keeping pace with the entire live stream costs about **25 GPUs' worth of NVDEC** out of up to 100,000. Decode is not an expensive problem. It is a badly-placed one.
 
+## The Same Question, Swept
+
+The 407M figure assumes one source format. It shouldn't — that conflates two independent things. **Source resolution and codec** set what the decoder can supply. **Training resolution** sets tokens per frame, and therefore what the model consumes. You can train at 256² from a 4K source. Separating them turns a number into a surface:
+
+![N_crit by source format, training fixed at 256²](/chart/helix-format-sweep)
+
+| Source | Codec | train 224² | train 256² | train 384² | train 480² |
+|---|---|---|---|---|---|
+| 480p | h264 | 134 | 103 | 46 | 29 |
+| 720p | h264 | 252 | **193** | 86 | 55 |
+| **1080p** | **h264** | 532 | **407** | 181 | 116 |
+| 1080p | hevc | 488 | 373 | 166 | 106 |
+| 4K | h264 | 2,080 | **1,592** | 708 | 453 |
+
+N_crit in millions of parameters. Codec multipliers are estimates — HEVC ≈1.09× H.264 from a single public transcode datapoint, and AV1 has no published NVDEC decode figure at all.
+
+A 300M ablation training at 256² is **compute-bound** from a 480p or 720p source, **marginally decode-bound** from 1080p, and **badly decode-bound** from 4K, where the crossover sits five times above the model. That's a **15× range** across plausible formats.
+
+So the honest version of the claim isn't "video pretraining is decode-bound." It's: **whether you are decode-bound is set by a capture decision made before any of this code runs, and the sensitivity is 15×.**
+
+## Which Makes Capture Resolution a Training-Systems Decision
+
+Here's the part that makes the sweep more than a hedge. Index doesn't rely on whatever camera a contributor happens to own — **accepted Creators are sent a recording device**, stated in the App Store listing and corroborated independently. Some materials also mention a sensor headset. Figure controls the format.
+
+Capture resolution is normally argued as a data-quality question: more pixels, more signal. The arithmetic says it's also a *throughput* question, and the two pull opposite ways. Capturing at 4K rather than 720p makes every downstream ablation roughly 8× more decode-bound — for pixels a 256²-trained model discards in the tokenizer anyway. If you're training at 256²–384², capturing above 1080p buys resolution you pay to decode and then throw away.
+
+Unless you intend to raise training resolution later. In which case the capture decision is a bet on the scaling surface — and it's one you can only price *after* running the study. Which is the ordering trap again, one level up.
+
 ## Tokenize Once, and Storage Gets *Smaller*
 
 The fix is to encode with the 3D causal VAE once, offline, store latents, and never decode during training again. The surprise is which direction the storage bill moves.
@@ -87,11 +117,12 @@ So `6ND` is accurate to about 5% at the configurations that actually matter, and
 
 Ranked by how much they'd move it:
 
-1. **Source resolution.** 4K instead of 1080p cuts decode ~4× and drops N_crit to ~100M, making the problem four times worse. Verify first.
-2. **Codec.** HEVC and AV1 decode slower than H.264 on the same silicon, and newer phones default to HEVC.
+1. ~~**Source resolution.**~~ Swept above rather than assumed — still the largest lever at 15×, but now a stated dependence instead of a hidden assumption. Unknowable from outside; a one-query answer for anyone inside Figure.
+2. **Codec.** The 1.09× HEVC multiplier rests on a single public datapoint and AV1 on none. Both want measuring.
 3. **Random access.** These benchmarks are *sequential* decode. Training wants random clips, which means seeking to keyframes and decoding forward. The gap between simple and cached decoders on short clips — 1,461 vs 2,602 fps at 1080p — is the visible edge of that tax, and it's the most likely place a real system falls short of the paper number.
 4. **The MFU assumption.** 40% is generous for a DiT with 3D attention. At 25%, N_crit rises to ~660M and *more* models are decode-bound, not fewer.
 5. **Mean upload length.** The 10-minute assumption sets the corpus estimate, the 128× multiple, and the doubling interval. All three move together if it's wrong.
+6. **Ingested is not trained-on.** Three of Index's five pipeline stages *discard* video — filtering, deduplication, rebalancing — and the discard rate isn't published. 50,400 hours a day is what arrives, not what reaches the model. Every corpus figure above is an upper bound, and the size of that gap is exactly the thing worth measuring next.
 
 ---
 

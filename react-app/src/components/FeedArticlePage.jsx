@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { allArticles } from '../data/feedData';
 import Chart from './charts';
 import SpeedTimeline from './SpeedTimeline';
@@ -47,7 +48,7 @@ export default function FeedArticlePage() {
       <h1 className="feed-article-heading">{article.title}</h1>
       {article.timeline && <SpeedTimeline config={article.timeline} />}
       <div className="feed-article-body">
-        <ReactMarkdown components={components}>{article.content}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{article.content}</ReactMarkdown>
       </div>
     </section>
   );

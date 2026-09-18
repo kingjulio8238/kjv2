@@ -35,6 +35,32 @@ export default function HelixChart({ id }) {
     );
   }
 
+  /* N_crit swept over source capture format, training fixed at 256^2. Bars above
+   * the 300M line mean a 300M ablation is starved; below it, it is compute-bound.
+   * A 15x range from one capture decision. */
+  if (id === 'helix-format-sweep') {
+    return (
+      <Card sub="The crossover, swept over capture format, with training fixed at 256². A 300M ablation is compute-bound from a 720p source and five times inside the decode-bound region from 4K — from one decision made before any training code runs.">
+        <VLogBars
+          vmin={60}
+          vmax={2600}
+          gridlines={[
+            { value: 100, label: '100M' },
+            { value: 1000, label: '1B' },
+          ]}
+          target={300}
+          targetLabel="300M ablation"
+          bars={[
+            { value: 1592, text: '1,592M', label: '4K\nsource', tone: 'fail' },
+            { value: 407, text: '407M', label: '1080p\nsource', tone: 'gray' },
+            { value: 193, text: '193M', label: '720p\nsource', tone: 'green' },
+            { value: 103, text: '103M', label: '480p\nsource', tone: 'green' },
+          ]}
+        />
+      </Card>
+    );
+  }
+
   /* one hour of Index, three ways to keep it. Latents are SMALLER than the
    * compressed source they came from — you discard resolution you'd never train on. */
   if (id === 'helix-storage') {
