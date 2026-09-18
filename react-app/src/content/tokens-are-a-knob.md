@@ -6,7 +6,9 @@ The first is a known problem showing up in a new regime. The second is the inter
 
 Model FLOPs Utilization is achieved FLOP/s over peak FLOP/s. It answers "how busy are the tensor cores," which is the right question exactly when the tensor cores are the constraint.
 
-[As the decode arithmetic shows](/feed/index-decode-bound), for video pretraining below roughly 400M parameters they aren't. A 300M model training at 256² from 1080p source is **decode-bound**: its NVDEC engines are saturated, its SMs are idle about a quarter of the time, and MFU reads around **29%**.
+[As the decode arithmetic shows](/feed/index-decode-bound), for video pretraining they often aren't. A 300M model training at 256² from a 1080p source is **decode-bound**: its NVDEC engines are saturated while its SMs sit idle, and MFU reads around 29%.
+
+*(That piece put the crossover at ~400M. [Measured](/feed/decode-measured), it is **2.4 billion** — so the argument below applies far more widely than it first appeared, not less.)*
 
 A team optimizing that number looks at 29% and concludes the model is too small. The change MFU recommends is *make N bigger* — which is precisely the change that destroys the ablation the run exists to produce.
 
@@ -18,7 +20,7 @@ Three distinct failure modes:
 
 **The regime flips mid-experiment.** N_crit scales linearly with decode throughput and inversely with tokens per frame, both of which a scaling study sweeps on purpose. MFU isn't comparable across points inside a single experiment.
 
-Where MFU is fine: the production 1B–14B run at fixed resolution is compute-bound by 2.4–34×, and there it means what it usually means. The problem is confined to small models and high source resolutions — which is, unfortunately, the entire ablation budget.
+Where MFU is fine: a run whose model is large enough to outpace its decoder means what it usually means. Measurement moved that boundary to **~2.4B**, so the problem is not confined to small ablations — it covers essentially every VLA policy and every video model short of the 14B world-model class.
 
 ## Tokens Are Not a Property of the Data
 

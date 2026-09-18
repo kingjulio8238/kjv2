@@ -1,6 +1,8 @@
-Figure's Index collects **35 minutes of new human video every second** — 50,400 hours a day, 2,100× realtime, uploaded from phones in 108 countries. The obvious worry is storage. The arithmetic says storage is a rounding error, and the real constraint sits somewhere almost nobody looks: the **video decoder**. On one H100 the crossover between decode-bound and compute-bound training lands at **407 million parameters** — which means the production model is fine and *every scaling-law ablation is not*.
+> **Update.** This piece is the paper analysis, written before I measured anything. The method holds and the direction was right. The number below is wrong by about 6×, and the conclusion it leads to — "the production model is fine" — is wrong outright. Measured, the crossover is **2.4 billion parameters**, which means almost nothing is safe. [I measured it here](/feed/decode-measured), and [built the loader here](/feed/loader-gate-fails). Kept as written, because the gap between the two is the point.
 
-Except that number isn't robust, and chasing down why turned out to be the more interesting result.
+Figure's Index collects **35 minutes of new human video every second** — 50,400 hours a day, 2,100× realtime, from a recording device Figure ships to contributors in 108 countries. The obvious worry is storage. The arithmetic says storage is a rounding error, and the real constraint sits somewhere almost nobody looks: the **video decoder**. On one H100 the crossover between decode-bound and compute-bound training lands at **407 million parameters** — which would mean the production model is fine and *every scaling-law ablation is not*.
+
+That turned out to be the wrong conclusion, for reasons worth walking through — and the number isn't even robust on its own terms.
 
 This is an outside analysis. Every input is public and cited; the assumptions are marked, and the ones that would move the answer are listed at the end.
 
