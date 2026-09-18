@@ -35,7 +35,8 @@ function App() {
         <Route path="/bio" element={<><BioPage /><Footer /></>} />
         <Route path="/contact" element={<><ContactPage /><Footer /></>} />
         <Route path="/feed" element={<><FeedPage /><Footer /></>} />
-        <Route path="/feed/inferencemaxxing" element={<><CollectionPage /><Footer /></>} />
+        <Route path="/feed/inferencemaxxing" element={<><CollectionPage slug="inferencemaxxing" /><Footer /></>} />
+        <Route path="/feed/robotics" element={<><CollectionPage slug="robotics" /><Footer /></>} />
         <Route path="/feed/:slug" element={<><FeedArticlePage /><Footer /></>} />
       </Routes>
     </>

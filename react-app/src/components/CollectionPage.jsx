@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { inferenceArticles, inferenceCollection } from '../data/feedData';
+import { collections } from '../data/feedData';
 
-// The inferencemaxxing collection: a feed-within-a-feed. Same row layout as the
-// main feed, filtered to the inference/kernel pieces.
-export default function CollectionPage() {
+// A collection page: a feed-within-a-feed. Same row layout as the main feed,
+// filtered to one collection's entries. Resolved from /feed/:collection.
+export default function CollectionPage({ slug }) {
+  const { meta, articles } = collections[slug] ?? {};
   const headingRef = useRef(null);
   const listRef = useRef(null);
 
@@ -29,6 +30,8 @@ export default function CollectionPage() {
     };
   }, []);
 
+  if (!meta) return null;
+
   return (
     <section className="feed-page">
       <Link
@@ -37,9 +40,9 @@ export default function CollectionPage() {
       >
         &larr; The Feed
       </Link>
-      <h1 className="feed-page-heading reveal" ref={headingRef}>{inferenceCollection.title}</h1>
+      <h1 className="feed-page-heading reveal" ref={headingRef}>{meta.title}</h1>
       <div className="feed-list reveal" ref={listRef}>
-        {inferenceArticles.map((article) => (
+        {articles.map((article) => (
           <Link
             to={`/feed/${article.slug}`}
             className="feed-list-item"

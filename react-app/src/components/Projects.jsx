@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 
 const projects = [
     {
+        name: 'Robotics',
+        description: 'What training a robot foundation model on human video costs',
+        to: '/feed/robotics',
+    },
+    {
         name: 'Inferencemaxxing',
         description: 'World\'s-fastest kernels for advanced AI models',
         to: '/feed/inferencemaxxing',

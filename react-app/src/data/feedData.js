@@ -14,6 +14,8 @@ import alliedSupplyChainContent from '../content/allied-supply-chain.md?raw';
 import onePersonUnicornContent from '../content/one-person-unicorn.md?raw';
 import nanoG1Content from '../content/nanog1.md?raw';
 import wan89xContent from '../content/wan-89x.md?raw';
+import indexDecodeBoundContent from '../content/index-decode-bound.md?raw';
+import tokensAreAKnobContent from '../content/tokens-are-a-knob.md?raw';
 
 // Inferencemaxxing — the inference/kernel work, a collection (feed-within-a-feed).
 // Each entry is tagged by the kernel it's about; the hub row's tag tracks the
@@ -55,6 +57,42 @@ export const inferenceCollection = {
   description: 'Making advanced, non-LLM models fast and cheap to serve — kernels, roofline floors, and the runtime beneath the DSLs.',
   tag: inferenceArticles[0]?.tag ?? 'VSA',
   date: inferenceArticles[0]?.date ?? '',
+  isCollection: true,
+};
+
+// Robotics — the Helix / video-pretraining work, a collection (feed-within-a-feed).
+// Outside analysis built only from public sources: every number is cited in the
+// piece and reproducible from notes/b1.py. Entries run newest-first; the hub
+// row's tag tracks the question currently in focus.
+export const roboticsArticles = [
+  {
+    slug: 'tokens-are-a-knob',
+    title: 'Tokens Are a Knob, Not a Measurement',
+    description: 'MFU measures the wrong resource for video pretraining, and "trained on N tokens" is unfalsifiable across labs — the same video gives an 8x spread in token count depending on the autoencoder. What to report instead, and the axis that makes video scaling laws portable.',
+    tag: 'Scaling',
+    categories: ['Robotics', 'Video', 'Scaling Laws'],
+    date: 'September 2026',
+    content: tokensAreAKnobContent,
+  },
+  {
+    slug: 'index-decode-bound',
+    title: 'Video Pretraining at Index Scale Is Decode-Bound',
+    description: 'Figure collects 35 minutes of human video every second. Storage turns out to be a rounding error; the constraint is the video decoder, and the crossover lands at 412M parameters — which means the production model is safe and every scaling-law ablation is not.',
+    tag: 'Systems',
+    categories: ['Robotics', 'Video', 'GPU'],
+    date: 'September 2026',
+    content: indexDecodeBoundContent,
+  },
+];
+
+// The hub row for the Robotics collection. Tag = the question in focus; date
+// tracks the newest entry inside.
+export const roboticsCollection = {
+  slug: 'robotics',
+  title: 'Robotics',
+  description: 'What it actually costs to train a robot foundation model on internet-scale human video — decode floors, scaling laws, and the metrics that mislead.',
+  tag: roboticsArticles[0]?.tag ?? 'Systems',
+  date: roboticsArticles[0]?.date ?? '',
   isCollection: true,
 };
 
@@ -197,4 +235,10 @@ export const feedArticles = [
 ];
 
 // Every article the article page can resolve by slug (top-level + collections).
-export const allArticles = [...feedArticles, ...inferenceArticles];
+export const allArticles = [...feedArticles, ...inferenceArticles, ...roboticsArticles];
+
+// Collections addressable at /feed/<slug>, keyed for the shared CollectionPage.
+export const collections = {
+  [inferenceCollection.slug]: { meta: inferenceCollection, articles: inferenceArticles },
+  [roboticsCollection.slug]: { meta: roboticsCollection, articles: roboticsArticles },
+};
