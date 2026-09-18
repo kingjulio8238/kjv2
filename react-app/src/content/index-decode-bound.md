@@ -25,7 +25,7 @@ Those are real bills, but they are ordinary ones, and 2–13 GB/s of sustained w
 
 ## The Decoder Is the Constraint — and Only at Small N
 
-An H100 has **7 NVDEC engines**. NVIDIA's own PyNvVideoCodec benchmarks put it at roughly **2,500 frames/second** for 1080p H.264 (2,390 simple / 2,531 cached on 30-second clips). That rate depends on the *source* resolution and essentially nothing about what you train.
+An H100 has **7 NVDEC engines**. NVIDIA's own PyNvVideoCodec benchmarks put it at **2,531 frames/second** for 1080p H.264 (cached decoder, 30-second clips; 2,390 with a simple one). That rate depends on the *source* resolution and essentially nothing about what you train.
 
 The training side depends only on the model. At 40% MFU on 989 TFLOP/s, with 64 tokens per input frame from a Wan-VAE-class tokenizer at 256², the model consumes `6·N·V` FLOPs per frame:
 
@@ -35,8 +35,8 @@ The crossover is exact and it is a formula, not a number:
 
 ```
 N_crit = (peak × MFU) / (6 · V · decode_fps)
-       = 396e12 / (6 · 64 · 2500)
-       ≈ 4.1 × 10⁸ parameters
+       = 396e12 / (6 · 64 · 2531)
+       ≈ 4.07 × 10⁸ parameters
 ```
 
 A 14B world model is compute-bound by 34× and will never notice its decoder. **A 300M ablation is decode-bound**, with its tensor cores idle about a quarter of the time waiting for frames.
