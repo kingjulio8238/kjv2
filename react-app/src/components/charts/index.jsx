@@ -1,11 +1,11 @@
-/* Chart dispatcher: route ![](/chart/<id>) ids to the right per-article chart
- * set. New pieces add a prefix + a component here. */
+/* Chart dispatcher: route ![](/chart/<id>) ids to the module that owns them.
+ * Ids are unique across the feed, and every module draws with ./paperKit. */
 import NanoG1Chart from './NanoG1Charts';
 import VsaChart from './VsaCharts';
-import HelixChart from './HelixCharts';
+import RoboticsChart from './RoboticsCharts';
 
 export default function Chart({ id }) {
+  if (id.startsWith('helix-')) return <RoboticsChart id={id} />;
   if (id.startsWith('vsa-')) return <VsaChart id={id} />;
-  if (id.startsWith('helix-')) return <HelixChart id={id} />;
   return <NanoG1Chart id={id} />;
 }

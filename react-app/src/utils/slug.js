@@ -1,5 +1,5 @@
-// Slugify heading text into an anchor id. Used by both the article's h2
-// renderer (to set ids) and the SpeedTimeline (to find sections to observe),
+// Slugify heading text into an anchor id. Used by both the article's heading
+// renderers (to set ids) and the contents list (to find sections to observe),
 // so the two always agree.
 export function slugify(s) {
   return String(s)

@@ -80,13 +80,11 @@ export default function BioPage() {
 
   return (
     <section className="bio-terminal" onClick={skip}>
-      <div className="bio-terminal-scanlines" />
-      <div className="bio-terminal-vignette" />
       <div className="bio-terminal-inner">
         {completed.map((b, i) => (
           <div
             key={i}
-            className={`bio-t-block bio-t-${b.type}${b.type === 'status' ? ' bio-t-dim' : ''}`}
+            className={`bio-t-block bio-t-${b.type}`}
           >
             {b.html ? <span dangerouslySetInnerHTML={{ __html: b.html }} /> : b.text}
           </div>

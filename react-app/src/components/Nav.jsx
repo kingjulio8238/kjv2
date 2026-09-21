@@ -4,55 +4,29 @@ import { useLocation, Link } from 'react-router-dom';
 export default function Nav() {
     const location = useLocation();
     const isMainPage = location.pathname === '/';
-    const [isScrolled, setIsScrolled] = useState(!isMainPage);
-    const [isLightMode, setIsLightMode] = useState(false);
-    const [isFooterVisible, setIsFooterVisible] = useState(false);
+    // Transparent over the hero, solid everywhere else — the nav only needs a
+    // ground once content is scrolling underneath it. Derived rather than
+    // stored, so the effect never sets state synchronously on mount.
+    const [heroVisible, setHeroVisible] = useState(true);
+    const isScrolled = !isMainPage || !heroVisible;
 
     useEffect(() => {
-        if (!isMainPage) {
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
-        }
-        setIsLightMode(false);
-        setIsFooterVisible(false);
-
-        const heroSection = isMainPage ? document.getElementById('hero') : null;
-        const footerSection = document.getElementById('footer');
-
-        const heroObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    setIsScrolled(!entry.isIntersecting);
-                });
-            },
+        if (!isMainPage) return undefined;
+        const hero = document.getElementById('hero');
+        if (!hero) return undefined;
+        const observer = new IntersectionObserver(
+            (entries) => entries.forEach((e) => setHeroVisible(e.isIntersecting)),
             { threshold: 0.05 }
         );
-
-        const footerObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    setIsLightMode(entry.isIntersecting);
-                    setIsFooterVisible(entry.isIntersecting);
-                });
-            },
-            { threshold: 0.15 }
-        );
-
-        if (heroSection) heroObserver.observe(heroSection);
-        if (footerSection) footerObserver.observe(footerSection);
-
-        return () => {
-            if (heroSection) heroObserver.unobserve(heroSection);
-            if (footerSection) footerObserver.unobserve(footerSection);
-        };
+        observer.observe(hero);
+        return () => observer.disconnect();
     }, [isMainPage]);
 
     const navClasses = [
         'nav',
         isScrolled ? 'scrolled' : '',
-        isLightMode ? 'light-mode' : '',
-        isFooterVisible ? 'footer-visible' : '',
+        // on mobile the article pages let the nav scroll away rather than
+        // spend fixed vertical space on it
         location.pathname.startsWith('/feed') ? 'nav-static' : '',
     ]
         .filter(Boolean)

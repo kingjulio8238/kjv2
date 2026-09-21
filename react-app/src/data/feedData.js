@@ -21,10 +21,7 @@ import loaderGateFailsContent from '../content/loader-gate-fails.md?raw';
 
 // Inferencemaxxing — the inference/kernel work, a collection (feed-within-a-feed).
 // Each entry is tagged by the kernel it's about; the hub row's tag tracks the
-// kernel currently in focus. Each entry carries a model-unique `timeline`: the
-// scalar we drive down (for video-gen, seconds-per-clip), with a stop at each
-// build milestone. The SpeedTimeline component renders it, synced to the h2
-// sections whose text matches each stop's `heading`.
+// kernel currently in focus.
 export const inferenceArticles = [
   {
     slug: 'wan-89x',
@@ -34,19 +31,6 @@ export const inferenceArticles = [
     categories: ['Inference', 'GPU', 'Video'],
     date: 'July 2026',
     content: wan89xContent,
-    timeline: {
-      metric: 'video generation',
-      unit: 's',
-      hint: '832×480 · 81 frames · one B200 · warm median',
-      stops: [
-        { heading: 'The Dense Baseline', value: '365', mult: '1×' },
-        { heading: 'Going Below the DSL', value: '215', mult: '1.7×' },
-        { heading: 'Four Steps, Not Forty', value: '11.2', mult: '32.6×' },
-        { heading: 'Let the Compiler Fuse the Glue', value: '6.9', mult: '53×' },
-        { heading: 'Four-Bit Math', value: '5.1', mult: '71×' },
-        { heading: 'Stack, and Ship', value: '4.0', mult: '89×' },
-      ],
-    },
   },
 ];
 
@@ -262,3 +246,12 @@ export const collections = {
   [inferenceCollection.slug]: { meta: inferenceCollection, articles: inferenceArticles },
   [roboticsCollection.slug]: { meta: roboticsCollection, articles: roboticsArticles },
 };
+
+// Which collection an article belongs to, if any. Lets an article page link
+// back to its own sub-feed rather than the top-level one.
+export function collectionOf(slug) {
+  for (const { meta, articles } of Object.values(collections)) {
+    if (articles.some((a) => a.slug === slug)) return meta;
+  }
+  return null;
+}

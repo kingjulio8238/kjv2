@@ -70,12 +70,12 @@ export default function ContactPage() {
                     <div className="contact-form" style={{ display: 'flex', alignItems: 'center' }}>
                         <p style={{
                             fontFamily: 'var(--font-headline)',
-                            fontWeight: 700,
-                            fontSize: 'clamp(28px, 3.2vw, 52px)',
-                            textTransform: 'uppercase',
+                            fontWeight: 500,
+                            fontSize: 'clamp(26px, 2.8vw, 42px)',
                             letterSpacing: '-0.025em',
+                            textTransform: 'uppercase',
                         }}>
-                            THANK YOU
+                            Thank you — I&apos;ll be in touch.
                         </p>
                     </div>
                 ) : (

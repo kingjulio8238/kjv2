@@ -4,6 +4,8 @@ import { collections } from '../data/feedData';
 
 // A collection page: a feed-within-a-feed. Same row layout as the main feed,
 // filtered to one collection's entries. Resolved from /feed/:collection.
+// Collections are listed in the home page's Projects section and nowhere else,
+// so the back link returns there.
 export default function CollectionPage({ slug }) {
   const { meta, articles } = collections[slug] ?? {};
   const headingRef = useRef(null);
@@ -34,13 +36,11 @@ export default function CollectionPage({ slug }) {
 
   return (
     <section className="feed-page">
-      <Link
-        to="/feed"
-        style={{ display: 'inline-block', marginBottom: 24, fontSize: 14, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-      >
-        &larr; The Feed
-      </Link>
+      <Link to="/#projects" className="feed-page-back">&larr; Projects</Link>
       <h1 className="feed-page-heading reveal" ref={headingRef}>{meta.title}</h1>
+      {meta.description && (
+        <div className="feed-page-intro"><p>{meta.description}</p></div>
+      )}
       <div className="feed-list reveal" ref={listRef}>
         {articles.map((article) => (
           <Link
